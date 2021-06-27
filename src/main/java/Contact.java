@@ -1,0 +1,65 @@
+import java.util.Objects;
+
+public class Contact {
+    private String name;
+    private String surname;
+    private final String phone;
+    private Group group;
+
+    public Contact(String name, String surname, String phone, Group group) {
+        this.name = name;
+        this.surname = surname;
+        this.phone = phone;
+        this.group = group;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public Group getGroup() {
+        return group;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
+    }
+
+    @Override
+    public String toString() {
+        return name + " " + surname + " " + phone + " " + group;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(phone);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || obj.getClass() != this.getClass()) {
+            return false;
+        }
+        Contact contact = (Contact) obj;
+        return this.getPhone().equals(contact.getPhone());
+    }
+}
