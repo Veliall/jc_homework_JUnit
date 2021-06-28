@@ -1,7 +1,8 @@
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
@@ -32,8 +33,8 @@ class ContactsTest {
         final boolean testContacts = contacts.addContact(contact);
 
         //then
-        Assertions.assertTrue((contacts.getContacts()).containsKey(contact.getPhone()));
-        Assertions.assertTrue(testContacts);
+        assertThat(contacts.getContacts(), hasEntry(contact.getPhone(), contact));
+        assertThat(testContacts, equalTo(true));
     }
 
     @Test
@@ -45,7 +46,7 @@ class ContactsTest {
         final boolean testContacts = contacts.addContact(contact);
 
         //then
-        Assertions.assertFalse(testContacts);
+        assertThat(testContacts, equalTo(false));
     }
 
     @Test
@@ -58,7 +59,7 @@ class ContactsTest {
         final Contact testContact = contacts.searchByPhone(phone);
 
         //then
-        Assertions.assertEquals(phone, testContact.getPhone());
+        assertThat(testContact.getPhone(), equalTo(phone));
 
     }
 
@@ -69,6 +70,6 @@ class ContactsTest {
         final String phone = "+999999999";
 
         //then
-        Assertions.assertNull(contacts.searchByPhone(phone));
+        assertThat(contacts.searchByPhone(phone), nullValue());
     }
 }
