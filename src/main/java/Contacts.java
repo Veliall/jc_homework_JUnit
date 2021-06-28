@@ -29,4 +29,8 @@ public class Contacts {
         }
         return s.toString();
     }
+
+    public HashMap<String, Contact> getContacts() {
+        return contacts;
+    }
 }

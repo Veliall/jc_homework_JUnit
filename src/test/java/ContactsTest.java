@@ -32,6 +32,7 @@ class ContactsTest {
         final boolean testContacts = contacts.addContact(contact);
 
         //then
+        Assertions.assertTrue((contacts.getContacts()).containsKey(contact.getPhone()));
         Assertions.assertTrue(testContacts);
     }
 
